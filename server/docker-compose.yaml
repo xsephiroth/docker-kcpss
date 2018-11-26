@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  ss:
+    image: ahui/ssserver
+    restart: always
+    ports:
+    - ${SS_HOST}:${SS_LISTEN_PORT}:${SS_LISTEN_PORT}
+    command: ["-k", "${SS_KEY}", "-p", "${SS_LISTEN_PORT}"]
+  kcp:
+    image: xtaci/kcptun
+    restart: always
+    ports:
+    - ${KCP_LISTEN_PORT}:${KCP_LISTEN_PORT}/udp
+    command: ["server", "-l", ":${KCP_LISTEN_PORT}", "-t", "ss:${SS_LISTEN_PORT}", "--key", "${KCP_KEY}", "--quiet"]
