@@ -1,15 +1,58 @@
-version: "3"
+version: "3.9"
 
 services:
   ss:
     image: ahui/ssserver
     restart: always
     ports:
-    - ${SS_HOST}:${SS_LISTEN_PORT}:${SS_LISTEN_PORT}
+    - ${SS_HOST}:10000:${SS_LISTEN_PORT}
+    - ${SS_HOST}:11000:${SS_LISTEN_PORT}
+    - ${SS_HOST}:11100:${SS_LISTEN_PORT}
+    - ${SS_HOST}:20000:${SS_LISTEN_PORT}
+    - ${SS_HOST}:22000:${SS_LISTEN_PORT}
+    - ${SS_HOST}:22200:${SS_LISTEN_PORT}
+    - ${SS_HOST}:30000:${SS_LISTEN_PORT}
+    - ${SS_HOST}:33000:${SS_LISTEN_PORT}
+    - ${SS_HOST}:33300:${SS_LISTEN_PORT}
+    - ${SS_HOST}:40000:${SS_LISTEN_PORT}
+    - ${SS_HOST}:44000:${SS_LISTEN_PORT}
+    - ${SS_HOST}:44400:${SS_LISTEN_PORT}
+    - ${SS_HOST}:50000:${SS_LISTEN_PORT}
+    - ${SS_HOST}:55000:${SS_LISTEN_PORT}
+    - ${SS_HOST}:55500:${SS_LISTEN_PORT}
+    - "[::]:10000:${SS_LISTEN_PORT}"
+    - "[::]:11000:${SS_LISTEN_PORT}"
+    - "[::]:11100:${SS_LISTEN_PORT}"
+    - "[::]:20000:${SS_LISTEN_PORT}"
+    - "[::]:22000:${SS_LISTEN_PORT}"
+    - "[::]:22200:${SS_LISTEN_PORT}"
+    - "[::]:30000:${SS_LISTEN_PORT}"
+    - "[::]:33000:${SS_LISTEN_PORT}"
+    - "[::]:33300:${SS_LISTEN_PORT}"
+    - "[::]:40000:${SS_LISTEN_PORT}"
+    - "[::]:44000:${SS_LISTEN_PORT}"
+    - "[::]:44400:${SS_LISTEN_PORT}"
+    - "[::]:50000:${SS_LISTEN_PORT}"
+    - "[::]:55000:${SS_LISTEN_PORT}"
+    - "[::]:55500:${SS_LISTEN_PORT}"
     command: ["-k", "${SS_KEY}", "-p", "${SS_LISTEN_PORT}"]
   kcp:
     image: xtaci/kcptun
     restart: always
     ports:
-    - ${KCP_LISTEN_PORT}:${KCP_LISTEN_PORT}/udp
+      - 10000:${KCP_LISTEN_PORT}/udp
+      - 11000:${KCP_LISTEN_PORT}/udp
+      - 11100:${KCP_LISTEN_PORT}/udp
+      - 20000:${KCP_LISTEN_PORT}/udp
+      - 22000:${KCP_LISTEN_PORT}/udp
+      - 22200:${KCP_LISTEN_PORT}/udp
+      - 30000:${KCP_LISTEN_PORT}/udp
+      - 33000:${KCP_LISTEN_PORT}/udp
+      - 33300:${KCP_LISTEN_PORT}/udp
+      - 40000:${KCP_LISTEN_PORT}/udp
+      - 44000:${KCP_LISTEN_PORT}/udp
+      - 44400:${KCP_LISTEN_PORT}/udp
+      - 50000:${KCP_LISTEN_PORT}/udp
+      - 55000:${KCP_LISTEN_PORT}/udp
+      - 55500:${KCP_LISTEN_PORT}/udp
     command: ["server", "-l", ":${KCP_LISTEN_PORT}", "-t", "ss:${SS_LISTEN_PORT}", "--key", "${KCP_KEY}", "--quiet"]
