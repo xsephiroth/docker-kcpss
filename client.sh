@@ -1,9 +1,8 @@
 #!/bin/bash
 
-
-docker run --name kcpss \
-	--restart always \
+docker run -d --name kcpss --restart always --network host \
 	-e KEY=YOURKEY \
 	-e SERVER=IP:PORT \
-	-p 1080:1080 \
-	xsephiroth/kcpss:server
+	xsephiroth/kcpss:client
+	
+# -e SERVER=[IPV6]:PORT \
