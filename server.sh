@@ -1,6 +1,7 @@
 #!/bin/bash
 
-docker run --name kcpss --restart \
+docker run --name kcpss \
+       	--restart always \
 	-e KEY=YOURKEY \
 	-p 10000:12948/udp \
 	-p 11000:12948/udp \
